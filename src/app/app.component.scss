@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+$primarycolor: #0f003f;
+$secondaycolor: #ffbd24;
+$tertiarycolor: #00cce3;
+
+$siteaplpha: rgba($primarycolor, 0.88);
+
+.app-container {
+  background: url("../assets/img/bg.png") no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  background-color: #00cce3;
+}
+
+.main-page {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: $secondaycolor;
+    font-family: "Poppins";
+    font-weight: bold;
+  }
+}
+
+.imdb-logo {
+  background: url("../assets/img/imdb_logo.png") no-repeat;
+  height: 30px;
+  width: 59px;
+}
+
+.imdb-logo {
+  width: 59px;
+  height: 30px;
+  margin-right: 10px;
+  background: url("../assets/img/imdb_logo.png");
+}
+
+.error-msg {
+  margin-top: 5px;
+  font-style: italic;
+  color: $secondaycolor;
+}

@@ -1,0 +1,42 @@
+.card.login-card {
+  background-color: #0f003fe0;
+  border-radius: 20px;
+  padding: 15px;
+  color: #fff !important;
+  padding: 40px;
+
+  .login-header {
+    justify-content: center;
+    h2 {
+      font-family: "Poppins";
+      color: #ffbd24;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 40px;
+    }
+  }
+
+  .login-form {
+    div {
+      margin: 15px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .card.login-card {
+    width: 23rem;
+  }
+
+  img {
+    width: 300px;
+  }
+}
+
+.modal-footer {
+  justify-content: center !important;
+
+  .btn {
+    width: 100px;
+  }
+}

@@ -34,8 +34,12 @@ export class FetchApiDataService {
   }
 
   // Making the api call for all the movie data
-  public getMovies(): Observable<any> {
+  public getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
+    console.log(
+      '🚀 ~ file: fetch-api-data.service.ts ~ line 39 ~ FetchApiDataService ~ getAllMovies ~ token',
+      token
+    );
     return this.http
       .get(apiUrl + 'movies', {
         headers: {

@@ -1,0 +1,54 @@
+<mat-card>
+
+
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between">
+        <div class="loading" *ngIf="showPreloader">
+            <mat-progress-spinner color="warn" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <div *ngIf="!showPreloader" fxFlex="0 0 33%" fxFlex.sm="0 0 100%" class="movie-image">
+            <img src={{movieData.imgURL}} alt={{movieData.Title}} />
+        </div>
+        <div fxLayout="column" fxFlex="0 0 66%" fxFlex.sm="0 0 100%" class="movie-info">
+            <h2>{{movieData.Title}}</h2>
+            <div>
+                <div class="movie-director">
+                    <span>
+                        Directed by:
+                        <a (click)="openDialog(movieData.Director[0])"
+                            matTooltip="Info about the {{movieData.Director[0].Name}}"
+                            matTooltipPosition="above">{{movieData.Director[0].Name}}</a>
+                    </span>
+                </div>
+                <div class="movie-actors">
+                    <span>
+                        Starring by:
+                        <span *ngFor="let actor of actors">
+                            <a (click)="openDialog(actor)" matTooltip="Info about the {{actor.Name}}"
+                                matTooltipPosition="below">
+                                {{actor.Name}}</a>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="imdb-div">
+                <img src={{imdb_logo}} alt='imdb_logo' />
+                <div>{{movieData.imdbRating}}/10</div>
+            </div>
+            <mat-chip-list aria-label="Movie Genres">
+                <mat-chip *ngFor="let genreName of genres">{{genreName.Genre}}</mat-chip>
+            </mat-chip-list>
+            <div>{{movieData.Description}}</div>
+            <mat-slide-toggle [(ngModel)]="faveChecked" (change)="toggleFavChanged(movieData.Title)" color='primary'>
+                <span *ngIf="!faveChecked">Add {{movieData.Title}} to your favourites</span>
+                <span class="favourites-notification" *ngIf="faveChecked">{{movieData.Title}} is in your
+                    favourites!</span>
+
+            </mat-slide-toggle>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" routerLink="/movies">
+                    Back to the movies
+                </button>
+            </mat-card-actions>
+        </div>
+    </div>
+</mat-card>

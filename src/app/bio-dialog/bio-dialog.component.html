@@ -1,0 +1,23 @@
+<div class="dialog">
+    <h1 mat-dialog-title>{{dialogData.Name}}</h1>
+    <div mat-dialog-content>
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="16px">
+            <div fxFlex.sm="0 0 100%" class="movie-image">
+                <img src={{dialogData.imgURL}} />
+            </div>
+            <div fxLayout="column" fxFlex.sm="0 0 100%" class="movie-info" fxLayoutAlign="space-between">
+                <div>
+                    <p class="dialog-dates">
+                        Born: {{dialogData.Born}}
+                        <span *ngIf="dialogData.Died"> - Died: {{dialogData.Born}}</span>
+                    </p>
+                    <p>{{dialogData.Bio}}</p>
+                </div>
+                <mat-dialog-actions>
+                    <button mat-button mat-dialog-close color="primary">Close</button>
+                </mat-dialog-actions>
+            </div>
+        </div>
+
+    </div>
+</div>

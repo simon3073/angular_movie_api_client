@@ -22,23 +22,30 @@ export class UserLoginFormComponent implements OnInit {
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe({
       next: (response) => {
-        // Logic for a successful user registration goes here! (To be implemented)
         console.log(response.user.Username);
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', response.user.Username);
         this.snackBar.open('user logged in!', 'OK', {
           duration: 2000,
+          verticalPosition: 'top',
+          panelClass: ['yellow-snackbar'],
         });
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', response.user.Username);
         this.router.navigate(['movies']);
       },
       error: (response) => {
         console.log(response);
-        this.snackBar.open(response, 'OK', {
-          duration: 2000,
+        this.snackBar.open('Invalid Username or Password', 'OK', {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['yellow-snackbar'],
         });
       },
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['movies']);
+    }
+  }
 }

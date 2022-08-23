@@ -1,0 +1,66 @@
+<div class="header">
+    <h1>Account Profile</h1>
+</div>
+<div class="profile">
+    <div class="loading" *ngIf="showPreloader">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <div *ngIf="!showPreloader" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between"
+        fxLayoutGap="30px grid">
+
+        <div fxFlex="1 1 50%" fxFlex.sm="0 0 100%">
+            <mat-card class="user-profile">
+                <mat-card-title>
+                    <h3>Account Info</h3>
+                    <hr>
+                </mat-card-title>
+                <mat-card-content>
+                    <div>
+                        <strong>Username:</strong> {{userData.Username}}
+                    </div>
+                    <div>
+                        <strong>Email:</strong> {{userData.Email}}
+                    </div>
+                    <div>
+                        <strong>Birthday: </strong>
+                        {{userData.Birthday | date}}
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="openEditDialog()">
+                        Edit Profile
+                    </button>
+                    <button mat-raised-button color="accent" (click)="openWarningDialog()">
+                        Delete Your Account
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div fxFlex="1 1 50%" fxFlex.sm="0 0 100%">
+            <mat-card class="user-favourites">
+                <mat-card-title>
+                    <h3>Your Favourites</h3>
+                    <hr>
+                </mat-card-title>
+                <mat-card-content *ngIf="!userData.FavouriteMovies || userData.FavouriteMovies.length===0">
+                    <p>No movies in your Favourites List</p>
+                </mat-card-content>
+                <mat-card-content *ngIf=userData.FavouriteMovies>
+                    <div *ngFor="let movie of userData.FavouriteMovies">
+                        <div class="fav-movie-card">
+                            {{movie['Title']}}
+                            <mat-icon matTooltip="Remove movie from favourites" (click)="deleteMovie(movie['Title'])">
+                                delete
+                            </mat-icon>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div class="profile-bottom">
+    <button mat-raised-button class="back-button" routerLink="/movies">
+        Go back to the movies
+    </button>
+</div>

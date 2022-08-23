@@ -1,0 +1,118 @@
+.mat-card {
+  background-color: #0f003fe0;
+  border-radius: 20px;
+  color: #fff;
+  padding: 15px 50px;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto !important;
+  width: 85%;
+  box-sizing: border-box;
+  padding: 30px;
+
+  .movie-info {
+    gap: 25px;
+    align-items: flex-start;
+    font-size: 1.1rem;
+    line-height: 25px;
+
+    h2 {
+      font-family: "Poppins";
+      color: rgb(255, 189, 36) !important;
+      font-weight: bold;
+      font-size: 2rem;
+      line-height: 1.2;
+      text-align: center;
+      text-align: left;
+      margin: 0 !important;
+    }
+
+    .imdb-div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      img {
+        margin-right: 10px;
+      }
+      div {
+        font-size: 1.2rem;
+        color: #fff !important;
+      }
+    }
+
+    .movie-actors,
+    .movie-director {
+      font-weight: bold;
+      a {
+        padding-left: 10px;
+        color: #00cce3;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+    .favourites-notification {
+      color: rgb(255, 189, 36);
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    .mat-chip {
+      a {
+        color: black;
+        text-decoration: none;
+      }
+
+      background-color: #00cce3;
+      // cursor: pointer;
+    }
+
+    .mat-card-actions {
+      width: 100%;
+      padding: 0 !important;
+      margin-top: auto;
+      button {
+        width: 100%;
+        font-family: "Poppins";
+        font-size: 1rem;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .movie-image img {
+    width: 30% !important;
+    margin-bottom: 20px;
+  }
+}
+
+:host
+  ::ng-deep
+  .mat-slide-toggle.mat-checked:not(.mat-disabled)
+  .mat-slide-toggle-bar {
+  background-color: rgb(255, 189, 36) !important;
+}
+
+:host
+  ::ng-deep
+  .mat-slide-toggle.mat-checked:not(.mat-disabled)
+  .mat-slide-toggle-thumb {
+  background-color: rgb(255, 189, 36) !important;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: rgb(255, 189, 36) !important;
+}

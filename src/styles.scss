@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -13,27 +12,79 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $movie-api-Angular-client-primary: mat.define-palette(mat.$indigo-palette);
-$movie-api-Angular-client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$movie-api-Angular-client-accent: mat.define-palette(
+  mat.$pink-palette,
+  A200,
+  A100,
+  A400
+);
 
 // The warn palette is optional (defaults to red).
 $movie-api-Angular-client-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$movie-api-Angular-client-theme: mat.define-light-theme((
-  color: (
-    primary: $movie-api-Angular-client-primary,
-    accent: $movie-api-Angular-client-accent,
-    warn: $movie-api-Angular-client-warn,
+$movie-api-Angular-client-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $movie-api-Angular-client-primary,
+      accent: $movie-api-Angular-client-accent,
+      warn: $movie-api-Angular-client-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($movie-api-Angular-client-theme);
 
-/* You can add global styles to this file, and also import other style files */
+// Define a dark theme
+$dark-primary: mat.define-palette(mat.$amber-palette);
+$dark-accent: mat.define-palette(mat.$red-palette);
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $dark-primary,
+      accent: $dark-accent,
+    ),
+  )
+);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Apply the dark theme by default
+@include mat.core-theme($dark-theme);
+@include mat.button-theme($movie-api-Angular-client-theme);
+@include mat.form-field-theme($dark-theme); // Form-Field theme
+@include mat.input-theme($dark-theme); // Input Theme
+
+.light {
+  @include mat.all-component-themes($movie-api-Angular-client-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", "Helvetica Neue", sans-serif;
+}
+
+.green-snackbar {
+  background: rgb(65, 252, 134);
+  color: white;
+}
+.green-snackbar button {
+  background-color: rgb(65, 252, 134);
+  color: white;
+  border: none;
+}
+.yellow-snackbar {
+  background: #ffbd24;
+  color: black;
+}
+.yellow-snackbar button {
+  background-color: #ffbd24;
+  color: black !important;
+  border: none;
+}

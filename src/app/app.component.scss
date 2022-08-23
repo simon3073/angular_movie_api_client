@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 $primarycolor: #0f003f;
 $secondaycolor: #ffbd24;
@@ -11,24 +10,28 @@ $siteaplpha: rgba($primarycolor, 0.88);
   background-size: cover;
   height: 100vh;
   background-color: #00cce3;
+  overflow-y: scroll;
 }
 
 .main-page {
   width: 100% !important;
   max-width: 100% !important;
-  height: 100vh;
   margin: 0 !important;
   padding: 0 !important;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   h1 {
     color: $secondaycolor;
     font-family: "Poppins";
     font-weight: bold;
   }
+}
+
+.login_ref_page {
+  justify-content: center !important;
+  height: 100% !important;
+  align-items: center;
 }
 
 .imdb-logo {
@@ -44,8 +47,26 @@ $siteaplpha: rgba($primarycolor, 0.88);
   background: url("../assets/img/imdb_logo.png");
 }
 
-.error-msg {
-  margin-top: 5px;
-  font-style: italic;
-  color: $secondaycolor;
+// .error-msg {
+//   margin-top: 5px;
+//   font-style: italic;
+//   color: $secondaycolor;
+// }
+
+.mat-toolbar {
+  height: 125px;
+  background-color: #0f003f;
+
+  img {
+    padding: 5px;
+    height: 90px;
+  }
+  .user-icon {
+    margin-right: 20px !important;
+    transform: scale(2);
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
 }

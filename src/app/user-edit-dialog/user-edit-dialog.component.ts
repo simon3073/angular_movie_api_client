@@ -1,23 +1,24 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { lastValueFrom } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as _moment from 'moment';
 const moment = _moment;
 
 @Component({
-  selector: 'app-user-registration-form',
-  templateUrl: './user-registration-form.component.html',
-  styleUrls: ['./user-registration-form.component.scss'],
+  selector: 'app-user-edit-dialog',
+  templateUrl: './user-edit-dialog.component.html',
+  styleUrls: ['./user-edit-dialog.component.scss'],
 })
-export class UserRegistrationFormComponent implements OnInit {
+export class UserEditDialogComponent implements OnInit {
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
-  logo: string = './assets/img/site_logo.png';
   momentDate: string = '';
+  showPreloader: Boolean = true;
   constructor(
-    public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
-    private router: Router
+    public fetchApiData: FetchApiDataService,
+    private dialogRef: MatDialogRef<UserEditDialogComponent>
   ) {}
 
   validate(): boolean {
@@ -34,42 +35,44 @@ export class UserRegistrationFormComponent implements OnInit {
     if (!this.userData.Email || !this.userData.Email.match(mailFormat)) {
       isReq = false;
     }
-    // check birthday existence
+    // check birthday existence and format
     if (!this.userData.Birthday) {
       isReq = false;
     }
     return isReq;
   }
 
-  // This is the function responsible for sending the form inputs to the backend
-  registerUser(): void {
+  async getUserData() {
+    const userInfo = await lastValueFrom(this.fetchApiData.getUserDetails());
+    this.showPreloader = false;
+    this.userData = userInfo;
+  }
+
+  async updateUserData() {
+    this.showPreloader = true;
     this.momentDate = moment(this.userData.Birthday).format();
     this.userData.Birthday = this.momentDate;
     if (this.validate()) {
-      this.fetchApiData.userRegistration(this.userData).subscribe({
-        next: (response) => {
-          this.snackBar.open('Account created! Welcome to 80s Movies!', 'OK', {
-            duration: 4000,
+      try {
+        const update = this.fetchApiData.editUserDetails(this.userData);
+        await lastValueFrom(update);
+        localStorage.setItem('user', this.userData.Username);
+        alert('Your Account has been updated');
+        this.dialogRef.close();
+      } catch (error) {
+        this.dialogRef.close();
+        this.snackBar.open(
+          'We cannot create your account. Please review each required field.',
+          'OK',
+          {
             verticalPosition: 'top',
             panelClass: ['yellow-snackbar'],
-          });
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('user', response.user.Username);
-          this.router.navigate(['movies']);
-        },
-        error: (response) => {
-          this.snackBar.open(
-            'We cannot create your account. Please review each required field.',
-            'OK',
-            {
-              verticalPosition: 'top',
-              panelClass: ['yellow-snackbar'],
-              duration: 4000,
-            }
-          );
-        },
-      });
+            duration: 4000,
+          }
+        );
+      }
     } else {
+      this.showPreloader = false;
       this.snackBar.open(
         'We cannot create your account. Please review each required field.',
         'OK',
@@ -82,5 +85,14 @@ export class UserRegistrationFormComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserData();
+  }
+}
+
+export interface User {
+  Username?: string;
+  Email?: any;
+  Birthday?: any;
+  Password?: any;
 }

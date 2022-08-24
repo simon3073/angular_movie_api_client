@@ -9,90 +9,46 @@ import { BioDialogComponent } from '../bio-dialog/bio-dialog.component';
   templateUrl: './movie-view.component.html',
   styleUrls: ['./movie-view.component.scss'],
 })
+
+/*
+  Component to show information of a single movie - 
+  Client can select to view more information of director or actor, or add to favourites
+*/
 export class MovieViewComponent implements OnInit {
+  // collect data passed by the routerLink
   movieData = history.state.data;
   userData = history.state.user;
-  showPreloader: Boolean = true;
-  // movieData = {
-  //   _id: 3,
-  //   Title: 'Sixteen Candles',
-  //   ReleaseYear: 1984,
-  //   Director: [
-  //     {
-  //       _id: 3002,
-  //       Born: '1950',
-  //       Died: '2009',
-  //       Name: 'John Hughes',
-  //       Bio: 'John Hughes was an American film director, film producer, and screenwriter. He was credited for creating some of the most memorable comedy films of the 1980s and the 1990s, when he was at the height of his career. He had a talent for writing coming-of-age stories, and for depicting fairly realistic adolescent characters. ',
-  //       MoviesDirected: [3, 4, 6, 8],
-  //       imgURL:
-  //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHhddxURhRcv8E77KsBchDIh8wUJGatTYGw&usqp=CAU',
-  //     },
-  //   ],
-  //   Description:
-  //     "A girl's 'sweet' sixteenth birthday becomes anything but special, as she suffers from every embarrassment possible.",
-  //   imdbRating: 7,
-  //   imgURL:
-  //     'https://res.cloudinary.com/ds9nzjduw/image/upload/v1653892226/movie_api_client/16_candles_vi5i15.jpg',
-  //   Genre: [
-  //     {
-  //       _id: 1001,
-  //       Genre: 'Comedy',
-  //     },
-  //     {
-  //       _id: 1002,
-  //       Genre: 'Romance',
-  //     },
-  //   ],
-  //   Actor: [
-  //     {
-  //       _id: 2005,
-  //       Bio: 'Anthony Michael Hall was born in West Roxbury, Massachusetts. His parents are Mercedes Hall, an actress-blues and jazz singer, and Larry Hall, who owned an auto body shop. His stepfather is a show-business manager.',
-  //       Born: '1968',
-  //       Name: 'Anthony Michael Hall',
-  //       imgURL:
-  //         'https://m.media-amazon.com/images/M/MV5BOTdhZmJlMmUtZjdhYi00MDVjLWFhZmMtNTY4MDU5OWIyMTU5XkEyXkFqcGdeQXVyODUwMjgxNDU@._V1_.jpg',
-  //       Movies: [3, 4, 6],
-  //     },
-  //     {
-  //       _id: 2002,
-  //       Bio: "Molly Ringwald was born in Roseville, California, to Adele Edith (Frembd), a chef, and Robert Ringwald, a blind jazz pianist. Her ancestry includes German, English, and Swedish. She released an album at the age of 6 entitled, 'I Wanna Be Loved By You, Molly Sings'. She is the youngest daughter of Bob Ringwald.",
-  //       Born: '1968',
-  //       Name: 'Molly Ringwald',
-  //       imgURL:
-  //         'https://m.media-amazon.com/images/M/MV5BMjM4MzM1NTkxNF5BMl5BanBnXkFtZTgwMzA4NTk3MjE@._V1_.jpg',
-  //       Movies: [3, 4, 9],
-  //     },
-  //   ],
-  //   imgURL_load:
-  //     'https://res.cloudinary.com/ds9nzjduw/image/upload/e_blur:1500,q_10/v1653892226/movie_api_client/16_candles_vi5i15.jpg',
-  //   imgURL_thumb:
-  //     'https://res.cloudinary.com/ds9nzjduw/image/upload/c_scale,h_150,q_30,w_100/v1653892226/movie_api_client/16_candles_vi5i15.jpg',
-  // };
+
+  // retrieve IMDB logo
   imdb_logo: string = './assets/img/imdb_logo.png';
 
-  genres: any = [];
-  actors: any = [];
-  faveChecked = false;
+  // set up data types
+  genres: GenreData[] = [];
+  actors: ActorData[] = [];
+  showPreloader: Boolean = true;
+  faveChecked = false; // set favourite toggle to false by default
+
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
     private router: Router
   ) {}
 
-  toggleFavChanged(movieTitle: string) {
+  // function fired when user toggles favourite
+  toggleFavChanged(movieTitle: string): void {
     if (this.faveChecked) {
-      this.fetchApiData.addMovieToFavourites(movieTitle).subscribe(() => {
-        console.log('Movie added from favourites');
-      });
+      // if checked, add this movie to user favourites
+      this.fetchApiData.addMovieToFavourites(movieTitle).subscribe(() => {});
     } else {
-      this.fetchApiData.removeMovieFromFavourites(movieTitle).subscribe(() => {
-        console.log('Movie Removed from favourites');
-      });
+      // if unchecked - remove it
+      this.fetchApiData
+        .removeMovieFromFavourites(movieTitle)
+        .subscribe(() => {});
     }
   }
 
-  openDialog(dialogData: any) {
+  // open the BioDialogComponent and pass the data parameter
+  openDialog(dialogData: DialogData): void {
     this.dialog.open(BioDialogComponent, {
       width: '50%',
       data: {
@@ -101,6 +57,7 @@ export class MovieViewComponent implements OnInit {
     });
   }
 
+  // set up the page if we have a token and user in the history state
   setUpPage(): void {
     this.genres = this.movieData.Genre;
     this.actors = this.movieData.Actor;
@@ -111,12 +68,40 @@ export class MovieViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // set faveChecked based on data
     if (!this.movieData) {
-      console.log('a');
+      // if we havent been passed data (on page refresh) route to main movie page
       this.router.navigate(['movies']);
     } else {
       this.setUpPage();
     }
   }
+}
+
+// data type for dialog data object
+export interface DialogData {
+  _id: number;
+  Bio: string;
+  Born: string;
+  Died?: string;
+  Name: string;
+  imgURL: string;
+  MoviesDirected?: number[];
+  Movies?: number[];
+}
+
+// data type for dialog data object
+export interface GenreData {
+  _id: number;
+  Genre: string;
+}
+
+// data type for the actor data object
+export interface ActorData {
+  _id: number;
+  Bio: string;
+  Born: string;
+  Died?: string;
+  Name: string;
+  imgURL: string;
+  Movies: number[];
 }

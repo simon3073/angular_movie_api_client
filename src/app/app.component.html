@@ -1,7 +1,7 @@
 <div class="app-container">
     <div class="main-page" [ngClass]="{login_ref_page: !currentRoute}">
         <mat-toolbar color="primary" *ngIf=currentRoute>
-            <img src={{logo}} />
+            <img src={{logo}} routerLink="/movies" matTooltip="Home">
             <span class="spacer"></span>
             <button matTooltip="View Profile or Log Out" [matMenuTriggerFor]="menu" mat-icon-button class="user-icon"
                 aria-label="Example icon-button with share icon">

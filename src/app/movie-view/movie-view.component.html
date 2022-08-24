@@ -1,12 +1,13 @@
 <mat-card>
 
 
-    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between">
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="30px">
         <div class="loading" *ngIf="showPreloader">
             <mat-progress-spinner color="warn" mode="indeterminate"></mat-progress-spinner>
         </div>
         <div *ngIf="!showPreloader" fxFlex="0 0 33%" fxFlex.sm="0 0 100%" class="movie-image">
-            <img src={{movieData.imgURL}} alt={{movieData.Title}} />
+            <img src={{movieData.imgURL}} [ngStyle]="{'background-image': 'url(' + movieData.imgURL_load + ')'}"
+                alt={{movieData.Title}} />
         </div>
         <div fxLayout="column" fxFlex="0 0 66%" fxFlex.sm="0 0 100%" class="movie-info">
             <h2>{{movieData.Title}}</h2>

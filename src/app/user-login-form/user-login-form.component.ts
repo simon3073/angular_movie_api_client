@@ -8,7 +8,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss'],
 })
+
+/*
+  Component to login to app
+*/
 export class UserLoginFormComponent implements OnInit {
+  // set up data types
   @Input() userData = { Username: '', Password: '' };
   logo: string = './assets/img/site_logo.png';
 
@@ -22,7 +27,6 @@ export class UserLoginFormComponent implements OnInit {
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe({
       next: (response) => {
-        console.log(response.user.Username);
         this.snackBar.open('user logged in!', 'OK', {
           duration: 2000,
           verticalPosition: 'top',
@@ -33,7 +37,6 @@ export class UserLoginFormComponent implements OnInit {
         this.router.navigate(['movies']);
       },
       error: (response) => {
-        console.log(response);
         this.snackBar.open('Invalid Username or Password', 'OK', {
           duration: 3000,
           verticalPosition: 'top',

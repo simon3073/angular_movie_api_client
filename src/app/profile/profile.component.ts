@@ -11,43 +11,52 @@ import { lastValueFrom } from 'rxjs';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
+
+/*
+  Component to show user data and user list of favourites
+  User can update their profile, delete their account or remove movies from their favourites
+*/
 export class ProfileComponent implements OnInit {
+  // set up data types
   userData: User = {};
-  FavMovies: any[] = [];
-  showPreloader: Boolean = true;
+  showPreloader: Boolean = true; // show preloader by default
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog
   ) {}
 
+  // fetch user data << async for preloader
   async getUserData() {
     const userInfo = await lastValueFrom(this.fetchApiData.getUserDetails());
-    this.showPreloader = false;
+    this.showPreloader = false; // turn off preloader when loaded
     this.userData = userInfo;
   }
 
-  deleteMovie(movieTitle: string) {
+  // function to delete movie and display snackbar message
+  deleteMovie(movieTitle: string): void {
     this.fetchApiData.removeMovieFromFavourites(movieTitle).subscribe(() => {
       this.snackBar.open('Movie deleted from your favourites', 'OK', {
         duration: 3000,
         verticalPosition: 'top',
         panelClass: ['yellow-snackbar'],
       });
-      this.getUserData();
+      this.getUserData(); // reload user data
     });
   }
 
+  // function to confirm account deletion via dialog
   openWarningDialog(): void {
     this.dialog.open(WarningDialogComponent, {});
   }
 
+  // function to open user edit dialog
   openEditDialog(): void {
     const dialogRef = this.dialog.open(UserEditDialogComponent, {
       height: '550px',
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.getUserData();
+      this.getUserData(); // reload data after close of dialog data
     });
   }
 
@@ -56,9 +65,10 @@ export class ProfileComponent implements OnInit {
   }
 }
 
+// data type for user object
 export interface User {
   Username?: string;
-  Email?: any;
-  Birthday?: any;
+  Email?: string;
+  Birthday?: string;
   FavouriteMovies?: [];
 }

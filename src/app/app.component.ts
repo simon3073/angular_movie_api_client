@@ -15,7 +15,6 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   goToProfile() {
-    console.log('profile');
     this.router.navigate(['profile']);
   }
 

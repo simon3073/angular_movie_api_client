@@ -1,4 +1,3 @@
-
 $primarycolor: #0f003f;
 $secondaycolor: #ffbd24;
 $tertiarycolor: #00cce3;
@@ -34,32 +33,14 @@ $siteaplpha: rgba($primarycolor, 0.88);
   align-items: center;
 }
 
-.imdb-logo {
-  background: url("../assets/img/imdb_logo.png") no-repeat;
-  height: 30px;
-  width: 59px;
-}
-
-.imdb-logo {
-  width: 59px;
-  height: 30px;
-  margin-right: 10px;
-  background: url("../assets/img/imdb_logo.png");
-}
-
-// .error-msg {
-//   margin-top: 5px;
-//   font-style: italic;
-//   color: $secondaycolor;
-// }
-
 .mat-toolbar {
   height: 125px;
   background-color: #0f003f;
 
   img {
-    padding: 5px;
-    height: 90px;
+    padding: 5px 0 0 15px;
+    height: 80px;
+    cursor: pointer;
   }
   .user-icon {
     margin-right: 20px !important;

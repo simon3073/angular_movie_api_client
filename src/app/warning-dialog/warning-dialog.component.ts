@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   templateUrl: './warning-dialog.component.html',
   styleUrls: ['./warning-dialog.component.scss'],
 })
+/*
+  Component used as a dialog for confirming deletion of account
+*/
 export class WarningDialogComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -15,10 +18,9 @@ export class WarningDialogComponent implements OnInit {
     private router: Router
   ) {}
 
+  // if user confirms - delete account via API, clear local storage and route to login page
   deleteAccount(): void {
-    this.fetchApiData.deleteUser().subscribe((result) => {
-      console.log(result);
-    });
+    this.fetchApiData.deleteUser().subscribe((result) => {});
     localStorage.clear();
     this.router.navigate(['/login']);
     this.snackBar.open('You have successfully deleted your account!', 'OK', {

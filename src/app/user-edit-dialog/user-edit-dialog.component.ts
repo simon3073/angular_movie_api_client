@@ -11,7 +11,12 @@ const moment = _moment;
   templateUrl: './user-edit-dialog.component.html',
   styleUrls: ['./user-edit-dialog.component.scss'],
 })
+
+/*
+  Component to edit user data 
+*/
 export class UserEditDialogComponent implements OnInit {
+  // set up data types
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
   momentDate: string = '';
   showPreloader: Boolean = true;
@@ -21,6 +26,7 @@ export class UserEditDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<UserEditDialogComponent>
   ) {}
 
+  // validate user input prior to updating data
   validate(): boolean {
     let isReq = true;
     if (!this.userData.Username || this.userData.Username.length < 4) {
@@ -42,17 +48,20 @@ export class UserEditDialogComponent implements OnInit {
     return isReq;
   }
 
+  // fetch user data << async for preloader
   async getUserData() {
     const userInfo = await lastValueFrom(this.fetchApiData.getUserDetails());
-    this.showPreloader = false;
+    this.showPreloader = false; // turn off preloader when loaded
     this.userData = userInfo;
   }
 
+  // function for updating user data
   async updateUserData() {
+    // turn on preloader, convert datePicker to date format and validate inputs
     this.showPreloader = true;
     this.momentDate = moment(this.userData.Birthday).format();
-    this.userData.Birthday = this.momentDate;
     if (this.validate()) {
+      // if inputs valid update
       try {
         const update = this.fetchApiData.editUserDetails(this.userData);
         await lastValueFrom(update);
@@ -92,7 +101,7 @@ export class UserEditDialogComponent implements OnInit {
 
 export interface User {
   Username?: string;
-  Email?: any;
-  Birthday?: any;
-  Password?: any;
+  Email?: String;
+  Birthday?: String;
+  Password?: String;
 }

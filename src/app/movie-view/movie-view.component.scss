@@ -12,6 +12,10 @@
   box-sizing: border-box;
   padding: 30px;
 
+  .movie-image img {
+    width: 100%;
+  }
+
   .movie-info {
     gap: 25px;
     align-items: flex-start;
@@ -84,10 +88,9 @@
   }
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 959px) {
   .movie-image img {
     width: 30% !important;
-    margin-bottom: 20px;
   }
 }
 

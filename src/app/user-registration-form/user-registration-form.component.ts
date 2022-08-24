@@ -10,16 +10,22 @@ const moment = _moment;
   templateUrl: './user-registration-form.component.html',
   styleUrls: ['./user-registration-form.component.scss'],
 })
+/*
+  Component to register a new account for the app
+*/
 export class UserRegistrationFormComponent implements OnInit {
+  // set up data types
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
   logo: string = './assets/img/site_logo.png';
   momentDate: string = '';
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     private router: Router
   ) {}
 
+  // validate user input prior to updating data
   validate(): boolean {
     let isReq = true;
     if (!this.userData.Username || this.userData.Username.length < 4) {
@@ -43,9 +49,11 @@ export class UserRegistrationFormComponent implements OnInit {
 
   // This is the function responsible for sending the form inputs to the backend
   registerUser(): void {
+    // turn on preloader, convert datePicker to date format and validate inputs
     this.momentDate = moment(this.userData.Birthday).format();
     this.userData.Birthday = this.momentDate;
     if (this.validate()) {
+      // if inputs valid update
       this.fetchApiData.userRegistration(this.userData).subscribe({
         next: (response) => {
           this.snackBar.open('Account created! Welcome to 80s Movies!', 'OK', {

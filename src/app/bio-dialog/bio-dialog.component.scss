@@ -1,3 +1,7 @@
+.mat-dialog-container {
+  width: 80% !important;
+}
+
 .dialog {
   color: #0f003f;
   border-radius: 15px;
@@ -33,6 +37,18 @@
       font-family: "Poppins";
       font-size: 1rem;
       padding: 5px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .dialog {
+    img {
+      width: 100px;
+    }
+
+    .mat-dialog-content {
+      font-size: 0.9rem;
     }
   }
 }

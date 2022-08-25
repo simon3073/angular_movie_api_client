@@ -125,6 +125,30 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .header {
+    margin-bottom: 10px !important;
+    h1 {
+      width: 76%;
+      font-size: 1.5rem !important;
+    }
+  }
+  .mat-card {
+    margin: 0 !important;
+  }
+  .profile {
+    padding: 0 10px !important;
+  }
+
+  .fav-movie-card {
+    font-size: 0.9rem;
+  }
+
+  .mat-card-content {
+    font-size: 1rem !important;
+  }
+}
+
 .loading {
   display: flex;
   justify-content: center;

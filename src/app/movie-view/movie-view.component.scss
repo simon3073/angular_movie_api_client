@@ -94,6 +94,21 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .mat-card {
+    width: 85% !important;
+    .movie-el {
+      width: 100% !important;
+    }
+    .movie-info {
+      font-size: 1rem !important;
+      h2 {
+        font-size: 1.5rem !important;
+      }
+    }
+  }
+}
+
 :host
   ::ng-deep
   .mat-slide-toggle.mat-checked:not(.mat-disabled)

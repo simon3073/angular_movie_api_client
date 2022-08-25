@@ -13,6 +13,7 @@
       font-size: 2rem;
       font-weight: bold;
       margin: 40px;
+      text-align: center;
     }
   }
 
@@ -49,12 +50,16 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .card.login-card {
-    width: 23rem;
+  .mat-card {
+    width: 18rem;
   }
 
   img {
-    width: 300px;
+    width: 290px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
   }
 }
 

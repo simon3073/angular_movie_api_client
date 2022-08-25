@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
   // function to open user edit dialog
   openEditDialog(): void {
     const dialogRef = this.dialog.open(UserEditDialogComponent, {
-      height: '550px',
+      height: '600px',
     });
     dialogRef.afterClosed().subscribe(() => {
       this.getUserData(); // reload data after close of dialog data

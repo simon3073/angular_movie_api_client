@@ -1,7 +1,5 @@
 <mat-card>
-
-
-    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="30px">
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="30px" class="movie-el">
         <div class="loading" *ngIf="showPreloader">
             <mat-progress-spinner color="warn" mode="indeterminate"></mat-progress-spinner>
         </div>
@@ -40,8 +38,8 @@
             </mat-chip-list>
             <div>{{movieData.Description}}</div>
             <mat-slide-toggle [(ngModel)]="faveChecked" (change)="toggleFavChanged(movieData.Title)" color='primary'>
-                <span *ngIf="!faveChecked">Add {{movieData.Title}} to your favourites</span>
-                <span class="favourites-notification" *ngIf="faveChecked">{{movieData.Title}} is in your
+                <span *ngIf="!faveChecked">Add to favourites</span>
+                <span class="favourites-notification" *ngIf="faveChecked">In your
                     favourites!</span>
 
             </mat-slide-toggle>

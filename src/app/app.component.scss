@@ -8,7 +8,7 @@ $siteaplpha: rgba($primarycolor, 0.88);
   background: url("../assets/img/bg.png") no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
-  background-color: #00cce3;
+  background-color: $primarycolor;
   overflow-y: scroll;
 }
 

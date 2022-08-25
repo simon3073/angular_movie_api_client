@@ -50,7 +50,7 @@ export class MovieViewComponent implements OnInit {
   // open the BioDialogComponent and pass the data parameter
   openDialog(dialogData: DialogData): void {
     this.dialog.open(BioDialogComponent, {
-      width: '50%',
+      // width: '50%',
       data: {
         dialogData,
       },

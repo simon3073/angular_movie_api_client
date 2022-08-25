@@ -34,7 +34,10 @@
                 <div>{{movieData.imdbRating}}/10</div>
             </div>
             <mat-chip-list aria-label="Movie Genres">
-                <mat-chip *ngFor="let genreName of genres">{{genreName.Genre}}</mat-chip>
+                <mat-chip *ngFor="let genreName of genres" matTooltip="See all {{genreName.Genre}} movies"
+                    matTooltipPosition="above">
+                    <a routerLink="/movies" [state]="{genre: genreName.Genre}">{{genreName.Genre}}</a>
+                </mat-chip>
             </mat-chip-list>
             <div>{{movieData.Description}}</div>
             <mat-slide-toggle [(ngModel)]="faveChecked" (change)="toggleFavChanged(movieData.Title)" color='primary'>

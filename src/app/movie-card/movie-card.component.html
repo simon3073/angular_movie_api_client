@@ -1,5 +1,6 @@
 <div class="header">
-    <h1>All 80s Movies</h1>
+    <h1 *ngIf="genre === undefined">All 80s Movies</h1>
+    <h1 *ngIf="genre !== undefined">{{genre}} Movies</h1>
 </div>
 <div class="loading" *ngIf="showPreloader">
     <mat-progress-spinner color="warn" mode="indeterminate"></mat-progress-spinner>

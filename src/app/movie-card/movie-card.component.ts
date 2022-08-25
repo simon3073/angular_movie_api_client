@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { lastValueFrom } from 'rxjs';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
@@ -14,7 +15,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 export class MovieCardComponent implements OnInit {
   // set up data types
   movies: any[] = [];
+  filteredMovies: any[] = [];
   userData: User[] = [];
+  genre?: string = history.state.genre;
   showPreloader: Boolean = true; // show preloader by default
   imdb_logo: string = './assets/img/imdb_logo.png'; //IMDB Logo to show rating
 
@@ -31,6 +34,13 @@ export class MovieCardComponent implements OnInit {
     const getMovieList = await lastValueFrom(this.fetchApiData.getAllMovies());
     this.showPreloader = false; // remove preloader
     this.movies = getMovieList; // assign movie data
+    // if we have been served a genre - filter the movies to show only movies form that genre
+    if (this.genre !== undefined) {
+      this.filteredMovies = this.movies.filter((m) =>
+        m.Genre.some((g: any) => g.Genre === this.genre)
+      );
+      this.movies = this.filteredMovies;
+    }
   }
 
   // fetch user data

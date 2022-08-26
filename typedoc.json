@@ -1,0 +1,8 @@
+{
+    "entryPointStrategy": "expand",
+    "entryPoints": [
+        "./src/app"
+    ],
+    "out": "docs",
+    "includes": "src"
+}

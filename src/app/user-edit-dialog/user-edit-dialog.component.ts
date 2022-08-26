@@ -26,7 +26,11 @@ export class UserEditDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<UserEditDialogComponent>
   ) {}
 
-  // validate user input prior to updating data
+  /**
+   * Function to validate user input prior to updating data
+   * Displays feedback in snackbar
+   * @returns Boolean
+   */
   validate(): boolean {
     let isReq = true;
     if (!this.userData.Username || this.userData.Username.length < 4) {
@@ -48,14 +52,34 @@ export class UserEditDialogComponent implements OnInit {
     return isReq;
   }
 
-  // fetch user data << async for preloader
+  /**
+   * This is the function responsible getting the data of the logged in user
+   * Calls fetchApiData.getUserDetails()
+   * Saves data in userData array using the User interface
+   * @see {@link fetchApiData}
+   * @see {@link userData}
+   * @see {@link User}
+   * @returns userInfo object
+   * @throws response.error
+   */
   async getUserData() {
     const userInfo = await lastValueFrom(this.fetchApiData.getUserDetails());
     this.showPreloader = false; // turn off preloader when loaded
     this.userData = userInfo;
   }
 
-  // function for updating user data
+  /**
+   * This is the function responsible for sending the form inputs to the backend to register a new user account.
+   * Calls fetchApiData.editUserDetails.
+   * On success updates returned username and token to localStorage
+   * then closes this component
+   * @remarks Displays feedback in snackbar
+   * @see {@link fetchApiData}
+   * @see {@link User}
+   * @see {@link snackBar}
+   * @returns User object
+   * @throws response.error
+   */
   async updateUserData() {
     // turn on preloader, convert datePicker to date format and validate inputs
     this.showPreloader = true;

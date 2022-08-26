@@ -4,6 +4,10 @@
 
 <br>
 
+https://simon3073.github.io/angular_movie_api_client/
+
+<br/>
+
 Built using Angular, this is the client-side app for the application '80s Movies App'. It allows access to information movies from the 1980's where users can sign up, update their personal information, and create a list of their favorite 80's movies.
 <br />
 

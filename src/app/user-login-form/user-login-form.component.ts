@@ -9,11 +9,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-login-form.component.scss'],
 })
 
-/*
-  Component to login to app
-*/
+/**
+ * Component to login to app
+ */
 export class UserLoginFormComponent implements OnInit {
-  // set up data types
   @Input() userData = { Username: '', Password: '' };
   logo: string = './assets/img/site_logo.png';
 
@@ -23,7 +22,17 @@ export class UserLoginFormComponent implements OnInit {
     private router: Router
   ) {}
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * This is the function responsible for sending the form inputs to the backend to log in a user.
+   * Calls fetchApiData.userLogin.
+   * On success saves returned username and token to localStorage
+   * then routes to /movies.
+   * Displays feedback in snackbar
+   * @see {@link fetchApiData}
+   * @see {@link snackBar}
+   * @returns User object
+   * @throws response.error
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe({
       next: (response) => {

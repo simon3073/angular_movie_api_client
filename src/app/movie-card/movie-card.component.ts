@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { lastValueFrom } from 'rxjs';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
@@ -29,7 +28,15 @@ export class MovieCardComponent implements OnInit {
     this.getUserData();
   }
 
-  // fetch list of movies << async for preloader
+  /**
+   * This is the function responsible getting the data for all the movies.
+   * Calls fetchApiData.getAllMovies()
+   * Saves data in movies array
+   * @see {@link fetchApiData}
+   * @see {@link movies}
+   * @returns Movie object
+   * @throws response.error
+   */
   async getMovies() {
     const getMovieList = await lastValueFrom(this.fetchApiData.getAllMovies());
     this.showPreloader = false; // remove preloader
@@ -43,7 +50,16 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
-  // fetch user data
+  /**
+   * This is the function responsible getting the data of the logged in user
+   * Calls fetchApiData.getUserDetails()
+   * Saves data in userData array using the User interface
+   * @see {@link fetchApiData}
+   * @see {@link userData}
+   * @see {@link User}
+   * @returns user object
+   * @throws response.error
+   */
   getUserData(): void {
     this.fetchApiData.getUserDetails().subscribe((resp: any) => {
       this.userData = resp; // assign user data

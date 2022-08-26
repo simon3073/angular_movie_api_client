@@ -26,7 +26,16 @@ export class ProfileComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  // fetch user data << async for preloader
+  /**
+   * This is the function responsible getting the data of the logged in user
+   * Calls fetchApiData.getUserDetails()
+   * Saves data in userData array using the User interface
+   * @see {@link fetchApiData}
+   * @see {@link userData}
+   * @see {@link User}
+   * @returns userInfo object
+   * @throws response.error
+   */
   async getUserData() {
     const userInfo = await lastValueFrom(this.fetchApiData.getUserDetails());
     this.showPreloader = false; // turn off preloader when loaded
@@ -45,12 +54,16 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  // function to confirm account deletion via dialog
+  /**
+   * function to open WarningDialogComponent component for confirming account deletion
+   */
   openWarningDialog(): void {
     this.dialog.open(WarningDialogComponent, {});
   }
 
-  // function to open user edit dialog
+  /**
+   * function to open UserEditDialogComponent component for editing account information
+   */
   openEditDialog(): void {
     const dialogRef = this.dialog.open(UserEditDialogComponent, {
       height: '600px',

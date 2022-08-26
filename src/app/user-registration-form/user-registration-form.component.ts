@@ -25,7 +25,11 @@ export class UserRegistrationFormComponent implements OnInit {
     private router: Router
   ) {}
 
-  // validate user input prior to updating data
+  /**
+   * Function to validate user input prior to creating data
+   * Displays feedback in snackbar
+   * @returns Boolean
+   */
   validate(): boolean {
     let isReq = true;
     if (!this.userData.Username || this.userData.Username.length < 4) {
@@ -47,7 +51,17 @@ export class UserRegistrationFormComponent implements OnInit {
     return isReq;
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * This is the function responsible for sending the form inputs to the backend to register a new user account.
+   * Calls fetchApiData.userRegistration.
+   * On success saves returned username and token to localStorage
+   * then routes to /movies.
+   * @remarks Displays feedback in snackbar
+   * @see {@link fetchApiData}
+   * @see {@link snackBar}
+   * @returns User object
+   * @throws response.error
+   */
   registerUser(): void {
     // turn on preloader, convert datePicker to date format and validate inputs
     this.momentDate = moment(this.userData.Birthday).format();

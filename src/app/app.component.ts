@@ -14,10 +14,17 @@ export class AppComponent {
   logo: string = './assets/img/site_logo_navbar.png';
   constructor(private router: Router) {}
 
+  /**
+   * Function to take user to the Profile page
+   */
   goToProfile() {
     this.router.navigate(['profile']);
   }
 
+  /**
+   * Function to log user out
+   * @remarks removes localStorage and route to /login
+   */
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');

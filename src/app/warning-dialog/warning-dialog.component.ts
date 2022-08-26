@@ -18,7 +18,17 @@ export class WarningDialogComponent implements OnInit {
     private router: Router
   ) {}
 
-  // if user confirms - delete account via API, clear local storage and route to login page
+  /**
+   * This is the function responsible for deleting the current users account.
+   * Calls fetchApiData.deleteUser.
+   * On success removes data from localStorage
+   * then routes to /login.
+   * @remarks Displays feedback in snackbar
+   * @see {@link fetchApiData}
+   * @see {@link snackBar}
+   * @returns User object
+   * @throws response.error
+   */
   deleteAccount(): void {
     this.fetchApiData.deleteUser().subscribe((result) => {});
     localStorage.clear();

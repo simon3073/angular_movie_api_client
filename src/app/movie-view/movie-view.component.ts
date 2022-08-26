@@ -9,20 +9,22 @@ import { BioDialogComponent } from '../bio-dialog/bio-dialog.component';
   templateUrl: './movie-view.component.html',
   styleUrls: ['./movie-view.component.scss'],
 })
-
-/*
-  Component to show information of a single movie - 
-  Client can select to view more information of director or actor, or add to favourites
-*/
 export class MovieViewComponent implements OnInit {
-  // collect data passed by the routerLink
+  /**
+   * movieData receives its data from the routerLink in the MovieCard template when a movie is selected
+   */
   movieData = history.state.data;
+  /**
+   * userData receives its data from the routerLink in the MovieCard template when a movie is selected
+   */
   userData = history.state.user;
 
   // retrieve IMDB logo
   imdb_logo: string = './assets/img/imdb_logo.png';
 
-  // set up data types
+  /**
+   *
+   */
   genres: GenreData[] = [];
   actors: ActorData[] = [];
   showPreloader: Boolean = true;
@@ -34,7 +36,13 @@ export class MovieViewComponent implements OnInit {
     private router: Router
   ) {}
 
-  // function fired when user toggles favourite
+  /**
+   * This is the function responsible adding a movie to the logged in users favourites
+   * Calls fetchApiData.getUserDetails()
+   * @remarks Called when user toggles favourite
+   * @param movieTitle - string of the current movie to display in the label
+   * @see {@link fetchApiData}
+   */
   toggleFavChanged(movieTitle: string): void {
     if (this.faveChecked) {
       // if checked, add this movie to user favourites
@@ -47,7 +55,13 @@ export class MovieViewComponent implements OnInit {
     }
   }
 
-  // open the BioDialogComponent and pass the data parameter
+  /**
+   * This is the function responsible adding a movie to the logged in users favourites
+   * Calls fetchApiData.getUserDetails()
+   * @remarks Opens the BioDialogComponent as a dialog and pass the data as an object
+   * @param DialogData - Object of data to pass to BioDialogComponent for
+   * @see {@link DialogData}
+   */
   openDialog(dialogData: DialogData): void {
     this.dialog.open(BioDialogComponent, {
       // width: '50%',
@@ -57,7 +71,15 @@ export class MovieViewComponent implements OnInit {
     });
   }
 
-  // set up the page if we have a token and user in the history state
+  //
+
+  /**
+   * Function to set up variables for the template to display
+   * @remarks Only called if we have been passed data, otherwise re-route to /movies
+   * @see {@link genres}
+   * @see {@link actors}
+   * @see {@link faveChecked}
+   */
   setUpPage(): void {
     this.genres = this.movieData.Genre;
     this.actors = this.movieData.Actor;

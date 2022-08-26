@@ -34,21 +34,7 @@ export class AppComponent {
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log(
-          '🚀 ~ file: app.component.ts ~ line 38 ~ AppComponent ~ this.router.events.subscribe ~ this.currentRoute',
-          this.currentRoute,
-          event.url
-        );
-
-        this.currentRoute =
-          event.url !== '/register' &&
-          event.url !== '/login' &&
-          event.url !== '/';
-        console.log(
-          '🚀 ~ file: app.component.ts ~ line 38 ~ AppComponent ~ this.router.events.subscribe ~ this.currentRoute',
-          this.currentRoute,
-          event.url
-        );
+        this.currentRoute = event.url !== '/register' && event.url !== '/login';
       }
     });
   }

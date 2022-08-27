@@ -34,7 +34,10 @@ export class AppComponent {
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.currentRoute = event.url !== '/register' && event.url !== '/login';
+        this.currentRoute =
+          event.url !== '/register' &&
+          event.url !== '/login' &&
+          event.url !== '/';
       }
     });
   }

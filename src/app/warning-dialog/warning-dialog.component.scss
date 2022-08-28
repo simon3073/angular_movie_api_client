@@ -1,0 +1,24 @@
+.dialog {
+  .mat-dialog-title {
+    font-family: "Poppins" !important;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .mat-dialog-content {
+    font-family: "Poppins" !important;
+    margin: 20px auto !important;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .mat-dialog-actions {
+    justify-content: center;
+  }
+
+  .delete-btn {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+}

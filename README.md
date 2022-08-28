@@ -1,11 +1,52 @@
 # 80s Movies App
 
+<img src="https://res.cloudinary.com/ds9nzjduw/image/upload/v1661380490/CareeerFoundry%20Cuourse/Readme-Achievement_6_heuow0.png">
+
+<br>
+
+https://simon3073.github.io/angular_movie_api_client/
+
+<br/>
+
 Built using Angular, this is the client-side app for the application '80s Movies App'. It allows access to information movies from the 1980's where users can sign up, update their personal information, and create a list of their favorite 80's movies.
 <br />
 
 _Developer: Simon Bertoli_
 
 ## <br/>
+
+## General Notes
+
+This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 14.1.2
+
+### Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+### Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+### Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+### Deploy to gh-pages
+
+Run `ng deploy --base-href=/myFlix-Angular-client/`
+
+<br>
+
+## Installation
+
+```
+npm install
+npx parcel src/index.html
+```
+
+And then go to `localhost:1234`
+
+<br/>
 
 ## Technical requirements
 
@@ -27,6 +68,7 @@ The application must be written in Angular (version 9 or later)
 - NodeJS
 - HTML5
 - Angular
+- Angular Material
 - Typescript
 - SCSS
 
@@ -43,15 +85,12 @@ Login / Registration View
 Main View
 
 - Returns a list of all the movies in the database - Title, Movie Image and IMDB Rating
-- Allows searching from the Navigation Bar
-- Allows sorting via IMDB rating
 
 Movie View
 
 - Displays specific details about the movie - Director, Actor(s), Genre(s), Movie Description
 - Allows user to add movies to a favourites list
 - Allows user to view biography of Director and Actor(s)
-- Allows user to view all Movies of a Genre
 
 Profile View
 

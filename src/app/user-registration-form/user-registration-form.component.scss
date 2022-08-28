@@ -1,0 +1,80 @@
+.mat-card {
+  background-color: #0f003f;
+  border-radius: 20px;
+  padding: 15px;
+  color: #fff !important;
+  padding: 40px;
+
+  .mat-card-header {
+    justify-content: center;
+    h2 {
+      font-family: "Poppins";
+      color: #ffbd24;
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 40px;
+      text-align: center;
+    }
+  }
+
+  .mat-card-content form,
+  .mat-card-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+
+  button,
+  a {
+    font-family: "Poppins";
+    font-size: 1.2rem;
+    margin: 20px 0 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  button {
+    padding: 5px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mat-card {
+    width: 18rem;
+  }
+
+  img {
+    width: 290px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+.modal-footer {
+  justify-content: center !important;
+
+  .btn {
+    width: 100px;
+  }
+}
+
+mat-datepicker-toggle {
+  color: white !important;
+}
+
+.extra-padding {
+  padding-bottom: 20px !important;
+}

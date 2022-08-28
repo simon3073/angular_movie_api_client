@@ -1,0 +1,103 @@
+.movie-grid {
+  // margin-top: 750px !important;
+  padding: 15px 50px;
+  justify-content: center;
+
+  .mat-card {
+    background-color: #0f003fe0;
+    border-radius: 20px;
+    color: #fff;
+    padding: 20px;
+    font-family: "Poppins";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 350px;
+    img {
+      border-radius: 5px;
+    }
+
+    .mat-card-actions {
+      width: 90%;
+      bottom: 30px;
+      position: absolute;
+      button {
+        width: 100%;
+        font-family: "Poppins";
+        font-size: 1rem;
+        padding: 5px;
+      }
+    }
+
+    .imdb-div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      p {
+        font-size: 1.2rem;
+        color: #fff !important;
+        font-weight: 600;
+      }
+    }
+
+    h2 {
+      font-family: "Poppins";
+      color: rgb(255, 189, 36) !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      text-align: center;
+      margin: 10px;
+    }
+
+    p {
+      color: rgb(255, 189, 36) !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      text-align: center;
+      margin: 10px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .header {
+    h1 {
+      font-size: 1.5rem !important;
+      width: 100% !important;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  h1 {
+    width: 86%;
+    margin: 20px 0 10px auto;
+    background-color: rgba(15, 0, 63, 0.88);
+    padding: 25px 50px;
+    border-radius: 15px;
+    font-family: "Poppins";
+    color: rgb(255, 189, 36) !important;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 10px;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: rgb(255, 189, 36) !important;
+}

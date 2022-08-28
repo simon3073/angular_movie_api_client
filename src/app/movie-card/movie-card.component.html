@@ -1,21 +1,25 @@
-<div style="display: flex;">
-    <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
-        <mat-card-header>
-            <mat-card-title>{{movie.Title}}</mat-card-title>
-            <mat-card-subtitle>Directed by: {{movie.Director[0].Name}}</mat-card-subtitle>
-        </mat-card-header>
-        <img src={{movie.imgURL}} alt={{movie.Title}} />
-        <mat-card-actions>
-            <button mat-button color="primary">
-                Genre
-            </button>
-            <button mat-button color="primary">
-                Director
-            </button>
-            <button mat-button color="primary">
-                Synopsis
-            </button>
-            <mat-icon>favorite_border</mat-icon>
-        </mat-card-actions>
-    </mat-card>
+<div class="header">
+    <h1 *ngIf="genre === undefined">All 80s Movies</h1>
+    <h1 *ngIf="genre !== undefined">{{genre}} Movies</h1>
+</div>
+<div class="loading" *ngIf="showPreloader">
+    <mat-progress-spinner color="warn" mode="indeterminate"></mat-progress-spinner>
+</div>
+<div *ngIf="!showPreloader" class="movie-grid" fxLayout="row wrap" fxLayoutGap="16px grid" fxLayoutAlign="stretch">
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let movie of movies;">
+        <mat-card>
+            <img src={{movie.imgURL_thumb}} alt={{movie.Title}} />
+            <h2>{{movie.Title}}</h2>
+            <div class="imdb-div">
+                <img src={{imdb_logo}} alt='imdb_logo' />
+                <p>{{movie.imdbRating}}/10</p>
+            </div>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" routerLink="/movie-view"
+                    [state]="{data: movie, user:userData}">
+                    GO TO MOVIE
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 </div>

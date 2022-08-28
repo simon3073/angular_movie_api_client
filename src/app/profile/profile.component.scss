@@ -1,0 +1,162 @@
+.profile {
+  padding: 0 60px;
+}
+
+.mat-card {
+  background-color: #0f003fe0;
+  border-radius: 20px;
+  color: #fff;
+  padding: 15px 50px;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto !important;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+
+  .mat-card-title {
+    width: 100% !important;
+    text-align: left;
+
+    h3 {
+      font-family: "Poppins";
+      color: #ffbd24 !important;
+      font-weight: 600;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      text-align: left;
+    }
+    hr {
+      border: 0 !important;
+      width: 100%;
+      border-top: 1px solid #ffbd24 !important;
+    }
+  }
+
+  .mat-card-content {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    width: 100%;
+    div {
+      margin-bottom: 5px;
+    }
+  }
+
+  .fav-movie-card {
+    background: #241159;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px !important;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    color: #ffbd24;
+    height: 60px;
+    padding: 0 20px 0 20px;
+    .mat-icon {
+      cursor: pointer;
+      &:hover {
+        color: red;
+      }
+    }
+  }
+
+  .mat-card-actions {
+    width: 100%;
+    margin-top: 20px;
+    button {
+      width: 100%;
+      margin-top: 20px;
+      font-family: "Poppins";
+      font-size: 1rem;
+      padding: 5px;
+      margin: 10px 0 !important;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  h1 {
+    width: 86%;
+    background-color: rgba(15, 0, 63, 0.88);
+    padding: 25px 50px;
+    border-radius: 15px;
+    font-family: "Poppins";
+    color: #ffbd24 !important;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 10px;
+  }
+}
+
+.profile-bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+  button {
+    width: 20%;
+    min-width: 300px;
+    margin-top: 20px;
+    font-family: "Poppins";
+    font-size: 1.25rem;
+    padding: 5px;
+    background-color: #ffbd24;
+    margin: 15px 0 !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    margin-bottom: 10px !important;
+    h1 {
+      width: 76%;
+    }
+  }
+  .mat-card {
+    margin: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .header {
+    margin-bottom: 10px !important;
+    h1 {
+      width: 76%;
+      font-size: 1.5rem !important;
+    }
+  }
+  .mat-card {
+    margin: 0 !important;
+  }
+  .profile {
+    padding: 0 10px !important;
+  }
+
+  .fav-movie-card {
+    font-size: 0.9rem;
+  }
+
+  .mat-card-content {
+    font-size: 1rem !important;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: rgb(255, 189, 36) !important;
+}

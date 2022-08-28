@@ -1,0 +1,54 @@
+.mat-dialog-container {
+  width: 80% !important;
+}
+
+.dialog {
+  color: #0f003f;
+  border-radius: 15px;
+
+  h1 {
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+
+  img {
+    border-radius: 15px;
+    float: left;
+    margin-right: 15px;
+    width: 200px;
+  }
+
+  .mat-dialog-content {
+    font-size: 1.1rem;
+    line-height: 25px;
+    justify-content: space-between;
+    .dialog-dates {
+      margin-bottom: 10px;
+      font-weight: bold !important;
+    }
+  }
+
+  .mat-dialog-actions {
+    width: 50%;
+    bottom: 30px;
+    margin: 0 auto;
+    button {
+      width: 100%;
+      font-family: "Poppins";
+      font-size: 1rem;
+      padding: 5px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .dialog {
+    img {
+      width: 100px;
+    }
+
+    .mat-dialog-content {
+      font-size: 0.9rem;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<div class="dialog">
+    <h1 mat-dialog-title>Delete your Account</h1>
+    <div mat-dialog-content>
+        Are you sure you want to delete your account?
+    </div>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close color="primary">No, Keep my Account</button>
+        <button mat-button mat-dialog-close class="delete-btn" (click)="deleteAccount()" [routerLink]="['login']">Yes,
+            Delete</button>
+    </mat-dialog-actions>
+</div>

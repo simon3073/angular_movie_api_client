@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<div class="app-container">
+    <div class="main-page" [ngClass]="{login_ref_page: !currentRoute}">
+        <mat-toolbar color="primary" *ngIf=currentRoute>
+            <img src={{logo}} routerLink="/movies" matTooltip="Home">
+            <span class="spacer"></span>
+            <button matTooltip="View Profile or Log Out" [matMenuTriggerFor]="menu" mat-icon-button class="user-icon"
+                aria-label="Example icon-button with share icon">
+                <mat-icon>person</mat-icon>
+            </button>
+            <mat-menu class="mymenu" #menu="matMenu">
+                <button mat-menu-item (click)="goToProfile()">
+                    <mat-icon>person</mat-icon>View Profile & Favourites
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>logout</mat-icon>Log Out
+                </button>
+            </mat-menu>
+        </mat-toolbar>
+        <router-outlet>
+        </router-outlet>
+    </div>
+</div>

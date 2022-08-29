@@ -6,7 +6,7 @@
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form>
+        <form (ngSubmit)="loginUser()">
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Username</mat-label>
                 <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username"
@@ -17,12 +17,11 @@
                 <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password"
                     required>
             </mat-form-field>
+            <button mat-raised-button type="submit" color="primary">
+                Login
+            </button>
+            <button mat-button routerLink="/register">Create an Account</button>
         </form>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button (click)="loginUser()" color="primary">
-            Login
-        </button>
-        <button mat-button routerLink="/register">Create an Account</button>
-    </mat-card-actions>
+
 </mat-card>

@@ -1,13 +1,28 @@
 <div class="app-container">
-    <div class="main-page" [ngClass]="{login_ref_page: !currentRoute}">
-        <mat-toolbar color="primary" *ngIf=currentRoute>
+    <div class="main-page" [ngClass]="{login_ref_page: !showNav}">
+        <mat-toolbar color="primary" *ngIf=showNav>
             <img src={{logo}} routerLink="/movies" matTooltip="Home">
             <span class="spacer"></span>
+            <form class="example-form" (ngSubmit)="searchForMovie()">
+                <mat-form-field class="search-bar">
+                    <mat-label>Search for movies</mat-label>
+                    <input type="text" matInput [formControl]="searchForm" [matAutocomplete]="auto"
+                        [(ngModel)]="movieTitle">
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='searchForMovie()'>
+                        <mat-option *ngFor="let movie of searchOptions | async" [value]="movie">
+                            {{movie}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
             <button matTooltip="View Profile or Log Out" [matMenuTriggerFor]="menu" mat-icon-button class="user-icon"
                 aria-label="Example icon-button with share icon">
                 <mat-icon>person</mat-icon>
             </button>
             <mat-menu class="mymenu" #menu="matMenu">
+                <button mat-menu-item (click)="setRating(true)">
+                    <mat-icon>star</mat-icon>See Movies above 7 stars
+                </button>
                 <button mat-menu-item (click)="goToProfile()">
                     <mat-icon>person</mat-icon>View Profile & Favourites
                 </button>

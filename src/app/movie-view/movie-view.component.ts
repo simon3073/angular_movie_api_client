@@ -64,14 +64,11 @@ export class MovieViewComponent implements OnInit {
    */
   openDialog(dialogData: DialogData): void {
     this.dialog.open(BioDialogComponent, {
-      // width: '50%',
       data: {
         dialogData,
       },
     });
   }
-
-  //
 
   /**
    * Function to set up variables for the template to display
@@ -87,6 +84,14 @@ export class MovieViewComponent implements OnInit {
       m.Title === this.movieData.Title ? true : false
     );
     this.showPreloader = false;
+  }
+
+  // Set Genre in fetchAPI service and route back to movies
+  seeGenreMovies(genre: string): void {
+    this.fetchApiData.setGenre(genre);
+    this.fetchApiData.setRating(false);
+    this.fetchApiData.setSearch('');
+    this.router.navigate(['movies']);
   }
 
   ngOnInit(): void {

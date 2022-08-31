@@ -13,7 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +32,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const appRoutes: Routes = [
   { path: 'login', component: UserLoginFormComponent },
@@ -87,7 +88,9 @@ const MY_FORMATS = {
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
+    MatAutocompleteModule,
     FormsModule,
+    ReactiveFormsModule,
     MatMomentDateModule,
     RouterModule.forRoot(appRoutes),
   ],

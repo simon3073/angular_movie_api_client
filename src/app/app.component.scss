@@ -50,4 +50,12 @@ $siteaplpha: rgba($primarycolor, 0.88);
   .spacer {
     flex: 1 1 auto;
   }
+
+  .search-bar {
+    width: 260px !important;
+    margin-right: 50px;
+  }
+}
+.mat-option {
+  color: black !important;
 }

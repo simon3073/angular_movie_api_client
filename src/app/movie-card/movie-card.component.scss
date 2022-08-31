@@ -101,3 +101,20 @@
 .mat-spinner circle {
   stroke: rgb(255, 189, 36) !important;
 }
+
+.profile-bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+  button {
+    width: 20%;
+    min-width: 300px;
+    margin-top: 20px;
+    font-family: "Poppins";
+    font-size: 1.25rem;
+    padding: 5px;
+    background-color: #ffbd24;
+    margin: 15px 0 !important;
+  }
+}

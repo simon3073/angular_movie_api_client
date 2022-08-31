@@ -36,7 +36,8 @@
             <mat-chip-list aria-label="Movie Genres">
                 <mat-chip *ngFor="let genreName of genres" matTooltip="See all {{genreName.Genre}} movies"
                     matTooltipPosition="above">
-                    <a routerLink="/movies" [state]="{genre: genreName.Genre}">{{genreName.Genre}}</a>
+                    <!-- <a routerLink="/movies" [state]="{genre: genreName.Genre}">{{genreName.Genre}}</a> -->
+                    <a (click)="seeGenreMovies(genreName.Genre)">{{genreName.Genre}}</a>
                 </mat-chip>
             </mat-chip-list>
             <div>{{movieData.Description}}</div>

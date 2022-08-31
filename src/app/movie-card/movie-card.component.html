@@ -1,25 +1,35 @@
-<div class="header">
-    <h1 *ngIf="genre === undefined">All 80s Movies</h1>
-    <h1 *ngIf="genre !== undefined">{{genre}} Movies</h1>
-</div>
 <div class="loading" *ngIf="showPreloader">
     <mat-progress-spinner color="warn" mode="indeterminate"></mat-progress-spinner>
 </div>
-<div *ngIf="!showPreloader" class="movie-grid" fxLayout="row wrap" fxLayoutGap="16px grid" fxLayoutAlign="stretch">
-    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let movie of movies;">
-        <mat-card>
-            <img src={{movie.imgURL_thumb}} alt={{movie.Title}} />
-            <h2>{{movie.Title}}</h2>
-            <div class="imdb-div">
-                <img src={{imdb_logo}} alt='imdb_logo' />
-                <p>{{movie.imdbRating}}/10</p>
-            </div>
-            <mat-card-actions>
-                <button mat-raised-button color="primary" routerLink="/movie-view"
-                    [state]="{data: movie, user:userData}">
-                    GO TO MOVIE
-                </button>
-            </mat-card-actions>
-        </mat-card>
+<div *ngIf="!showPreloader">
+    <div class="header">
+        <h1 *ngIf="genre === '' && !rating && search === ''">All 80s Movies</h1>
+        <h1 *ngIf="genre !== ''">{{genre}} Movies</h1>
+        <h1 *ngIf="search !== ''">Search returned...</h1>
+        <h1 *ngIf="rating">All Movies rated above 7</h1>
+    </div>
+
+    <div class="movie-grid" fxLayout="row wrap" fxLayoutGap="16px grid" fxLayoutAlign="stretch">
+        <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let movie of movies;">
+            <mat-card>
+                <img src={{movie.imgURL_thumb}} alt={{movie.Title}} />
+                <h2>{{movie.Title}}</h2>
+                <div class="imdb-div">
+                    <img src={{imdb_logo}} alt='imdb_logo' />
+                    <p>{{movie.imdbRating}}/10</p>
+                </div>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" routerLink="/movie-view"
+                        [state]="{data: movie, user:userData}">
+                        GO TO MOVIE
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <div class="profile-bottom" *ngIf="genre !== '' || rating || search !== ''">
+        <button mat-raised-button class="back-button" (click)="clearAll()">
+            See All 80s Movies
+        </button>
     </div>
 </div>

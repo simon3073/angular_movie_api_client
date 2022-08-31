@@ -8,6 +8,9 @@ const apiUrl = 'https://movie-app-3073.herokuapp.com/';
   providedIn: 'root',
 })
 export class FetchApiDataService {
+  genre: string = '';
+  search: string = '';
+  rating: boolean = false;
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {}
@@ -193,6 +196,61 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Gets the search term that has been entered in the navbar
+   * This is used in the movie-view component to filter movies by their search
+   * @returns search term string
+   */
+  getSearch(): string {
+    return this.search;
+  }
+
+  /**
+   * Sets the search term that has been entered in the navbar
+   * This is used in the movie-card component to filter movies by their search
+   * @param term - String of the search term
+   */
+  setSearch(term: string): void {
+    this.search = term;
+  }
+
+  /**
+   * Sets the genre term that has been selected in the movie view
+   * This is used in the movie-card component to filter movies by their genre
+   * @returns genre  string
+   */
+  getGenre(): string {
+    return this.genre;
+  }
+
+  /**
+   * Gets the genre term that has been selected in the movie view
+   * This is used in the movie-card component to filter movies by their genre
+   * @param genre - String title of the movie
+   */
+  setGenre(genre: string): void {
+    this.genre = genre;
+  }
+
+  /**
+   * Gets the rating boolean that has been set in the navbar selection drop-down
+   * This is used in the movie-card component to filter movies by their rating (above 7)
+   * @returns rating boolean
+   */
+  getRating(): boolean {
+    return this.rating;
+  }
+
+  /**
+   * Sets the rating boolean
+   * This is used in the movie-card component to filter movies by their rating (above 7)
+   * @param rating - boolean
+   */
+  setRating(rating: boolean): void {
+    this.rating = rating;
+  }
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error ocurred:', error.error.message);
